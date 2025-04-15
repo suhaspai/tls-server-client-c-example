@@ -5,15 +5,25 @@ Please lookin the makefile for the commands to install missing packages
 such as openssl and libssl. The netstat utility is also a good networking debug tool. 
 
 make all -n
+
 g++ server.c -o server -lssl -lcrypto
+
 g++ client.c -o client -lssl -lcrypto
+
 openssl version -a
+
 openssl genrsa -out server.key 2048
+
 openssl rsa -in server.key -pubout -out public.key
+
 openssl req -new -subj "/C=US/ST=CA/L=SD/O=OpenSource/CN=localhost/emailAddress=suhaspai@yahoo.com" -key server.key -out server.csr
+
 openssl req -text -in server.csr -noout -verify
+
 openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 365
+
 server &
+
 client &
 
 
