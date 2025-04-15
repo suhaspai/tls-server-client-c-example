@@ -1,0 +1,74 @@
+/home/suhas/c_examples/tls> make csr
+openssl req -new -key server.key -out server.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:CA
+Locality Name (eg, city) []:SD
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:localhost
+Email Address []:suhaspai@yahoo.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
+
+
+
+/home/suhas/c_examples/tls> make verify
+openssl req -text -in server.csr -noout -verify
+Certificate request self-signature verify OK
+Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: C = US, ST = CA, L = SD, O = Internet Widgits Pty Ltd, CN = localhost, emailAddress = suhaspai@yahoo.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:b1:81:65:d1:54:b6:e4:67:a4:e7:a4:68:6a:ca:
+                    f9:b4:33:ce:0c:be:9b:f7:2c:6a:7a:c0:56:9f:f1:
+                    e6:3c:7c:1a:a8:c0:d8:53:46:9d:85:b6:8f:63:88:
+                    18:d4:98:bd:6f:87:61:2b:0e:1d:d5:27:5b:bd:1c:
+                    ac:f4:93:17:61:52:a2:11:0f:23:83:16:97:1b:fd:
+                    fc:ad:43:20:95:36:97:b4:49:82:e7:2f:9e:2d:e5:
+                    47:83:85:91:12:1e:56:1a:8a:f5:79:93:56:f6:6e:
+                    89:a4:cd:d8:97:ea:f0:3e:b4:55:bc:a2:dd:7c:d9:
+                    75:bf:17:22:be:45:d5:2a:e3:e2:48:b4:9b:02:e4:
+                    19:5c:e0:8a:dd:76:a6:1a:43:d0:c0:e3:f4:84:ab:
+                    88:a0:a5:46:b6:44:e8:81:3e:72:23:f6:4a:17:b4:
+                    9b:ae:4c:d6:9e:d8:fd:20:83:1e:46:77:6c:f2:bc:
+                    de:e5:b1:e7:bc:22:cf:3d:99:c0:7a:2f:56:93:76:
+                    08:a8:bc:d1:0d:f3:be:56:86:75:a8:70:f6:2c:7c:
+                    a5:5a:b3:d4:52:9c:dc:55:42:26:6f:0e:0c:47:8e:
+                    c5:ab:f7:bd:43:98:e3:d6:8e:11:61:fd:2f:82:4a:
+                    94:2a:31:e9:da:f0:23:af:04:0d:57:ac:b8:22:cb:
+                    50:39
+                Exponent: 65537 (0x10001)
+
+
+
+
+/home/suhas/c_examples/tls> make crt
+openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 365
+Certificate request self-signature ok
+subject=C = US, ST = CA, L = SD, O = Internet Widgits Pty Ltd, CN = localhost, emailAddress = suhaspai@yahoo.com
+/home/suhas/c_examples/tls> make run
+server &
+client &
+/home/suhas/c_examples/tls> Server listening on port 8080...
+Received: Hello from client!
+Received: Hello from server!
+
+
+
+
+
