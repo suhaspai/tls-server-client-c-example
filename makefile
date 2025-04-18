@@ -42,9 +42,8 @@ netstat:
 # list all listening tcp ports
 listen:
 	netstat -lt
-pid = $(shell lsof -ti :${port})
 pid:
-	echo Kill process id ${pid}
+	lsof -ti :${port}
 kill:
 	kill -9 ${pid}
 # Install openssl and libssl 
