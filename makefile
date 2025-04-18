@@ -20,7 +20,7 @@ public:
 	openssl rsa -in server.key -pubout -out public.key
 # Create certificate signing request  (https://docs.openssl.org/3.3/man1/openssl-req/)
 csr:
-	openssl req -new -subj "/C=US/ST=CA/L=SD/O=OpenSource/CN=localhost/emailAddress=suhaspai@yahoo.com" -key server.key -out server.csr
+	openssl req -new -subj "/C=US/ST=CA/L=SD/O=OpenSource/CN=localhost/emailAddress=your@email.com" -key server.key -out server.csr
 csr_interactive:
 	openssl req -new -key server.key -out server.csr
 # Verify csr (do not output private key)
