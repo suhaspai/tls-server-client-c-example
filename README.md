@@ -16,7 +16,7 @@ openssl genrsa -out server.key 2048
 
 openssl rsa -in server.key -pubout -out public.key
 
-openssl req -new -subj "/C=US/ST=CA/L=SD/O=OpenSource/CN=localhost/emailAddress=suhaspai@yahoo.com" -key server.key -out server.csr
+openssl req -new -subj "/C=US/ST=CA/L=SD/O=OpenSource/CN=localhost/emailAddress=xxx@yyy.com" -key server.key -out server.csr
 
 openssl req -text -in server.csr -noout -verify
 
